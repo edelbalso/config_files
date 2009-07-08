@@ -34,4 +34,6 @@ export PS1='[${SSH_CONNECTION+"%n@%m:"}%~] '
 setopt histignoredups
 
 # keep more history
-export HISTSIZE=200
+export HISTSIZE=1000
+
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH:/Users/paul/.ec2:~/bin" 

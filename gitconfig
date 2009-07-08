@@ -1,7 +1,7 @@
 # ADD LOCAL CONFIGURATION HERE
 [user]
 	name = Paul
-	email = paul.mckellar@gmail.com
+	email = paul.mckellar@gmail.com #yes i know this is online
 
 # DO NOT EDIT BELOW THIS LINE
 [color]
