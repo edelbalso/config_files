@@ -18,8 +18,8 @@ if [ -e "$HOME/.myaliases" ]; then
 fi
 
 
-# vi mode
-bindkey -v
+# emacs mode
+bindkey -e
 
 # use incremental search
 bindkey ^R history-incremental-search-backward
