@@ -17,7 +17,7 @@ setopt prompt_subst
 
 # prompt
 #export PS1="${SSH_CONNECTION+"%{$fg_bold[blue]%}%n@%m:"}%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info) \`if [ \$? = 0 ]; then echo -e '\e[01;32m:)'; else echo -e '\e[01;31m:('; fi\`%{$reset_color%} "
-export PS1='${SSH_CONNECTION+"%{$fg_bold[blue]%}%n@%m:"}%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info) '
+export PS1='${SSH_CONNECTION+"%{$fg_bold[blue]%}%n@%m:"}%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info)$(if [[ "%?" = "0" ]] ; then echo "!!!"; else echo ""; fi):%? '
 
 
 # autocompletion for ruby_test
