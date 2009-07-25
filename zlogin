@@ -1,7 +1,7 @@
 git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null)
   if [[ -n $ref ]]; then
-    echo "%{$fg_bold[blue]%}${ref#refs/heads/}%{$reset_color%}"
+    echo ":%{$fg_bold[blue]%}${ref#refs/heads/}%{$reset_color%}"
   fi
 }
 
@@ -47,4 +47,3 @@ _git_remote_branch() {
   fi
 }
 compdef _git_remote_branch grb
-
