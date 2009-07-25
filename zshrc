@@ -34,6 +34,11 @@ export PS1='[${SSH_CONNECTION+"%n@%m:"}%~] '
 setopt histignoredups
 
 # keep more history
-export HISTSIZE=1000
+export HISTFILE=.zhistory  # History settings
+export HISTSIZE=100000
+export SAVEHIST=1000       # Default: 200
+setopt   appendhistory     # multiple zsh's all append to same history file (rather than last
 
 export PATH="/usr/local/git/libexec/git-core:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH:/Users/paul/.ec2:~/bin" 
+
+
