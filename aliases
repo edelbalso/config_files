@@ -9,3 +9,66 @@ alias tu="ruby_test unit"
 alias tf="ruby_test functional"
 alias ti="ruby_test integration"
 alias hgdi="hg diff --color=always --git | less -r"
+
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+alias ls="ls -G"
+alias ll="ls -GAhl"
+alias empties="find . -empty -type d -maxdepth 2"
+
+alias pg="ps ax | grep -v grep | grep -i "
+alias ip="ifconfig | grep 'inet '"
+
+alias bashrc='mate_wait ~/.bash_profile && source ~/.bash_profile'
+alias bashalias='mate_wait ~/.bash_aliases && source ~/.bash_aliases'
+
+alias tm="open -a /Applications/TextMate.app"
+alias ch="git diff -M | mate"
+alias chc="git diff --cached -M | mate"
+alias grm="git status | grep 'deleted:' | sed -e 's/^#.deleted: *//' | xargs -n1 git rm"
+alias gum="git add-unmerged"
+alias gb='git branch -a -v'
+alias gci='git commit -v'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gcia='git commit -v -a'
+alias gs='git status'
+alias gch="git log ORIG_HEAD.. --stat --no-merges"
+# alias gch='git log -p ORIG_HEAD.. | mate'
+
+# gco      => git checkout master
+# gco bugs => git checkout bugs
+function gco {
+  if [ -z "$1" ]; then
+    git checkout master
+  else
+    git checkout $1
+  fi
+}
+
+alias rsng="sudo launchctl stop nginx && sudo launchctl start nginx"
+
+alias svnadd="svn st | grep '?' | sed -e 's/^\? *//' | xargs -n1 svn add"
+
+alias m="mongrel_rails start"
+alias ms="mongrel_rails stop"
+alias aspec="rake spec:server:stop; AUTOTEST=true rake spec:server:start && ./script/autospec"
+alias nospec="rake spec:server:stop"
+alias cf="RAILS_ENV=features cucumber features"
+alias t="thin start"
+alias ts="thin stop"
+alias sc="./script/console"
+alias sd="./script/dbconsole"
+alias ss="./script/server"
+alias migrate="rake db:migrate"
+alias remig="rake db:migrate:redo"
+function rlog {
+  if [ -z "$1" ]; then
+    tail -f -n80 ./log/development.log
+  else
+    tail -f -n80 ./log/$1.log
+  fi
+}

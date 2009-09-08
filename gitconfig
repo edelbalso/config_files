@@ -24,3 +24,9 @@
   plre = pull --rebase
   st = status
   out = log origin..HEAD
+  st = status
+  ci = commit
+  co = checkout
+  b = branch
+  changed = diff --name-status -r
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
