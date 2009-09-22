@@ -119,7 +119,6 @@ export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate w
 
 
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
-PS1="\W\[${COLOR_GREEN}\] \$(parse_git_branch)\[${COLOR_NC}\]$ "
-
+PS1="\[${COLOR_GREEN}\]\W\[${COLOR_NC}\]:\[${COLOR_BLUE}\]\$(parse_git_branch)\[${COLOR_NC}\]:$ "
