@@ -122,3 +122,8 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 PS1="\[${COLOR_GREEN}\]\w\[${COLOR_NC}\] \[${COLOR_BLUE}\]\$(parse_git_branch)\[${COLOR_NC}\] $ "
+
+
+function cucumber-feature {
+   rake features:safe FEATURE=$1
+}

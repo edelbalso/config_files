@@ -34,3 +34,11 @@ source ~/.bashrc
 # in this order:
 #     bashrc
 #     .bashrc
+##
+# Your previous /Users/paul/.bash_profile file was backed up as /Users/paul/.bash_profile.macports-saved_2009-09-24_at_15:18:20
+##
+
+# MacPorts Installer addition on 2009-09-24_at_15:18:20: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
