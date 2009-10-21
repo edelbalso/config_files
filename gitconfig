@@ -5,9 +5,9 @@
 
 [push]
   config = default
-	default = current
-[pull]
-	default = current
+
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
 # DO NOT EDIT BELOW THIS LINE
 [color]
@@ -33,4 +33,3 @@
   b = branch
   changed = diff --name-status -r
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-
