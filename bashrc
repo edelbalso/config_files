@@ -125,5 +125,10 @@ PS1="\[${COLOR_GREEN}\]\w\[${COLOR_NC}\] \[${COLOR_BLUE}\]\$(parse_git_branch)\[
 
 
 function cucumber-feature {
-   rake features:safe FEATURE=$1
+   rake cucumber FEATURE=$1
 }
+
+function spec-one {
+  spec $1 -O spec/spec.opts
+}
+
