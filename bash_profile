@@ -14,7 +14,7 @@ fi
 # Load in .bashrc -------------------------------------------------
 source ~/.git-completion.bash
 source ~/.bashrc
-
+source ~/.aliasprojects
 
 
 # Hello Messsage --------------------------------------------------
