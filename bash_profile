@@ -12,6 +12,7 @@ fi
 
 
 # Load in .bashrc -------------------------------------------------
+source ~/.git-completion.bash
 source ~/.bashrc
 
 
@@ -42,3 +43,20 @@ source ~/.bashrc
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+
+##
+# Your previous /Users/paul/.bash_profile file was backed up as /Users/paul/.bash_profile.macports-saved_2009-09-24_at_23:33:37
+##
+
+# MacPorts Installer addition on 2009-09-24_at_23:33:37: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+# ec2
+export PATH="$PATH:/Users/paul/.ec2" 
+export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
+export EC2_HOME=~/OpenSource/ec2-api-tools-1.3-34128
+export PATH=$EC2_HOME/bin:$PATH
+export EC2_PRIVATE_KEY=`ls ~/.ec2/pk-*.pem`
+export EC2_CERT=`ls ~/.ec2/cert-*.pem`
