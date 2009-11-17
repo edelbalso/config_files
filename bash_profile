@@ -14,7 +14,7 @@ fi
 # Load in .bashrc -------------------------------------------------
 source ~/.git-completion.bash
 source ~/.bashrc
-
+source ~/.myaliases
 
 
 # Hello Messsage --------------------------------------------------
@@ -60,6 +60,8 @@ export EC2_HOME=~/OpenSource/ec2-api-tools-1.3-34128
 export PATH=$EC2_HOME/bin:$PATH
 export EC2_PRIVATE_KEY=`ls ~/.ec2/pk-*.pem`
 export EC2_CERT=`ls ~/.ec2/cert-*.pem`
+
+
 
 
 alias grm="git status | grep deleted | cut -d \" \" -f 5 | xargs git rm"
