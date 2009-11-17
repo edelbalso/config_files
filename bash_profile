@@ -15,7 +15,7 @@ fi
 source ~/.git-completion.bash
 source ~/.bashrc
 source ~/.aliasprojects
-
+source ~/.aliases
 
 # Hello Messsage --------------------------------------------------
 
@@ -64,4 +64,16 @@ export PATH=$EC2_HOME/bin:$PATH
 PROMPT_COMMAND='echo -ne "\033]0; ${PWD##*/}\007"'
 
 alias grm="git status | grep deleted | cut -d \" \" -f 5 | xargs git rm"
+
+function cuke {
+  if [ -z "$1" ]; then
+    rake cucumber
+  else
+    rake cucumber FEATURE=$1
+  fi
+}
+ 
+function onespec {
+   spec $1 -O spec/spec.opts
+}
 
