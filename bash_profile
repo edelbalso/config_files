@@ -67,6 +67,8 @@ export PATH=$EC2_HOME/bin:$PATH
 
 PROMPT_COMMAND='echo -ne "\033]0; ${PWD##*/}\007"'
 
+#hadoop
+export PATH="~/Development/hadoop/bin/:$PATH"
 
 
 alias grm="git status | grep deleted | cut -d \" \" -f 5 | xargs git rm"
