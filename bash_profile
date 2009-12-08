@@ -78,8 +78,4 @@ function cuke {
     rake cucumber FEATURE=$1
   fi
 }
- 
-function onespec {
-   spec $1 -O spec/spec.opts
-}
 
