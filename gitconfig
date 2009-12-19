@@ -33,3 +33,4 @@
   b = branch
   changed = diff --name-status -r
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+	wtf = !git-wtf

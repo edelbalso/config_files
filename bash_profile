@@ -60,10 +60,10 @@ export PATH=/opt/nginx/sbin:$PATH
 # ec2
 export PATH="$PATH:/Users/paul/.ec2" 
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
-export EC2_HOME=~/OpenSource/ec2-api-tools-1.3-34128
+export EC2_HOME=~/OpenSource/ec2-api-tools-1.3-42584
 export PATH=$EC2_HOME/bin:$PATH
-# export EC2_PRIVATE_KEY=`ls ~/.ec2/pk-*.pem`
-# export EC2_CERT=`ls ~/.ec2/cert-*.pem`
+export EC2_PRIVATE_KEY=`ls ~/.ec2/pk-*.pem`
+export EC2_CERT=`ls ~/.ec2/cert-*.pem`
 
 PROMPT_COMMAND='echo -ne "\033]0; ${PWD##*/}\007"'
 
