@@ -5,16 +5,18 @@
 
 [push]
   config = default
-
+  default = matching
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-
-# DO NOT EDIT BELOW THIS LINE
+[diff]
+  renames = true
+[branch]
+  autosetupmerge = true
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
 [core]
 	excludesfile = ~/.gitignore
 [alias]
@@ -33,4 +35,12 @@
   b = branch
   changed = diff --name-status -r
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-	wtf = !git-wtf
+  au = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  ch = diff --name-status -r
+  ignored = "!git ls-files --others --exclude-standard"
+  lg = log --graph --abbrev-commit --date=relative --pretty=format:'%h -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
+  track = !sh -c 'git branch --track "$0" "origin/$0" && git checkout "$0"'
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
+[github]
+	user = square

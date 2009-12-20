@@ -43,7 +43,7 @@ export HISTSIZE=100000
 export SAVEHIST=1000       # Default: 200
 setopt appendhistory     # multiple zsh's all append to same history file (rather than last
 
-export PATH="/usr/local/git/libexec/git-core:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH:/Users/paul/.ec2:~/bin" 
+export PATH="/usr/local/git/libexec/git-core:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH" 
 export PATH=/opt/nginx/sbin:/opt/local/bin:/opt/local/sbin:$PATH
 
 # ec2

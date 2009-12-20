@@ -50,53 +50,10 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-
-
-# Prompts ----------------------------------------------------------
-export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
-# export PS1="\[${COLOR_GRAY}\]\u@\h \[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with user, host, and path 
-
-# This runs before the prompt and sets the title of the xterm* window.  If you set the title in the prompt
-# weird wrapping errors occur on some systems, so this method is superior
-export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*} ${PWD}"; echo -ne "\007"'  # user@host path
-
 export PS2='> '    # Secondary prompt
 export PS3='#? '   # Prompt 3
 export PS4='+'     # Prompt 4
-
-function xtitle {  # change the title of your xterm* window
-  unset PROMPT_COMMAND
-  echo -ne "\033]0;$1\007" 
-}
-
-
-
-# Navigation -------------------------------------------------------
-alias ..='cd ..'
-alias ...='cd .. ; cd ..'
-
-# I got the following from, and mod'd it: http://www.macosxhints.com/article.php?story=20020716005123797
-#    The following aliases (save & show) are for saving frequently used directories
-#    You can save a directory using an abbreviation of your choosing. Eg. save ms
-#    You can subsequently move to one of the saved directories by using cd with
-#    the abbreviation you chose. Eg. cd ms  (Note that no '$' is necessary.)
-if [ ! -f ~/.dirs ]; then  # if doesn't exist, create it
-	touch ~/.dirs
-fi
-
-alias show='cat ~/.dirs'
-save (){
-	command sed "/!$/d" ~/.dirs > ~/.dirs1; \mv ~/.dirs1 ~/.dirs; echo "$@"=\"`pwd`\" >> ~/.dirs; source ~/.dirs ; 
-}
-source ~/.dirs  # Initialization for the above 'save' facility: source the .sdirs file
-shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility
-
-
-
 # Other aliases ----------------------------------------------------
-alias ll='ls -hl'
-alias la='ls -a'
-alias lla='ls -lah'
 
 # Misc
 alias g='grep -i'  # Case insensitive grep
@@ -119,14 +76,6 @@ export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate w
 
 
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
-PS1="${USER}@${HOSTNAME%%.*} \[${COLOR_GREEN}\]\w\[${COLOR_NC}\]\[${COLOR_BLUE}\]\$(parse_git_branch)\[${COLOR_NC}\] $ "
-
-function cucumber-feature {
-   rake cucumber FEATURE=$1
-}
-function spec-one {
-  spec $1 -O spec/spec.opts
-}
-
+PS1="\[${COLOR_GREEN}\]\w\[${COLOR_NC}\] \[${COLOR_BLUE}\]\$(parse_git_branch)\[${COLOR_NC}\]$ "
