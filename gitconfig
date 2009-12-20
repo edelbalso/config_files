@@ -41,6 +41,3 @@
   lg = log --graph --abbrev-commit --date=relative --pretty=format:'%h -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
   track = !sh -c 'git branch --track "$0" "origin/$0" && git checkout "$0"'
   whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-
-[github]
-	user = square
