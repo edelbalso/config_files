@@ -28,6 +28,10 @@ export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:$PATH  # OS-X Sp
 export MANPATH=/opt/local/share/man:$MANPATH
 # Finished adapting your MANPATH environment variable for use with MacPorts.
 
+# hadoop
+export PATH="$PATH:~/Development/hadoop/bin" 
+export HADOOP_HOME="~/Development/hadoop"
+
 # ec2
 export PATH="$PATH:/Users/paul/.ec2" 
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
@@ -38,6 +42,10 @@ export EC2_CERT=`ls ~/.ec2/cert-*.pem`
 
 if [ -f ~/.aliases ]; then
     . ~/.aliases
+fi
+
+if [ -f ~/.localaliases ]; then
+    . ~/.localaliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -55,6 +63,13 @@ if [ -d ~/bin ]; then
 	export PATH=:~/bin:$PATH  # add your bin folder to the path, if you have it.  It's a good place to add all your scripts
 fi
 
+function cuke {
+  if [ -z "$1" ]; then
+    rake cucumber
+  else
+    rake cucumber FEATURE=$1
+  fi
+}
 
 # Load in .bashrc -------------------------------------------------
 source ~/.git-completion.bash
