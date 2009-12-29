@@ -10,13 +10,14 @@ export HISTCONTROL=ignoreboth
 # bind '"\t":menu-complete'
 
 # Change the colors used by ls
-export LSCOLORS="gxDxFxdxCxExExhbadgxgx"
+#export LSCOLORS="gxDxFxdxCxExExhbadgxgx"
+export LSCOLORS=ExFxCxDxBxegedabagacad # My preference
 export EDITOR="mate_wait"
 export LESSEDIT='mate -l %lm %f'
 export LC_CTYPE="en_US.UTF-8"
 
 # Custom PATH
-export PATH="/opt/nginx/sbin:/usr/local/bin:/usr/local/sbin:$PATH:~/bin:."
+export PATH="$PATH:~/lib/bin:~/lib/cakephp/core/current/cake/console"
 
 export MANPATH="$MANPATH:/usr/local/git/man:/usr/local/mysql/man"
 
@@ -29,16 +30,16 @@ export MANPATH=/opt/local/share/man:$MANPATH
 # Finished adapting your MANPATH environment variable for use with MacPorts.
 
 # hadoop
-export PATH="$PATH:~/Development/hadoop/bin" 
-export HADOOP_HOME="~/Development/hadoop"
+#export PATH="$PATH:~/Development/hadoop/bin" 
+#export HADOOP_HOME="~/Development/hadoop"
 
 # ec2
-export PATH="$PATH:/Users/paul/.ec2" 
-export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
-export EC2_HOME=~/OpenSource/ec2-api-tools-1.3-42584
-export PATH=$EC2_HOME/bin:$PATH
-export EC2_PRIVATE_KEY=`ls ~/.ec2/pk-*.pem`
-export EC2_CERT=`ls ~/.ec2/cert-*.pem`
+#export PATH="$PATH:/Users/paul/.ec2" 
+#export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
+#export EC2_HOME=~/OpenSource/ec2-api-tools-1.3-42584
+#export PATH=$EC2_HOME/bin:$PATH
+#export EC2_PRIVATE_KEY=`ls ~/.ec2/pk-*.pem`
+#export EC2_CERT=`ls ~/.ec2/cert-*.pem`
 
 if [ -f ~/.aliases ]; then
     . ~/.aliases
@@ -54,10 +55,6 @@ fi
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
-
-# color prompt
-PS1="\[\e[01;32m\]\u@\h\[\e[01;36m\] \w \$(__git_ps1 '(%s) ')\$ \[\e[00m\]"
-# PS1="\[\e[01;32m\]\u@\h\[\e[01;34m\] \w \$ \[\e[00m\]"
 
 if [ -d ~/bin ]; then
 	export PATH=:~/bin:$PATH  # add your bin folder to the path, if you have it.  It's a good place to add all your scripts
