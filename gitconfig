@@ -1,8 +1,9 @@
 # ADD LOCAL CONFIGURATION HERE
 [user]
-	name = Paul McKellar
-	email = paul.mckellar@gmail.com #yes i know this is online
-
+	name = Eduardo Del Balso
+	email = e.delbalso@gmail.com #yes i know this is online
+[github]
+	user = edelbalso
 [push]
   config = default
   default = matching
@@ -19,6 +20,7 @@
   interactive = auto
 [core]
 	excludesfile = ~/.gitignore
+	editor = mate -w
 [alias]
   c = commit -m
   a = add
@@ -32,7 +34,7 @@
   st = status
   ci = commit
   co = checkout
-  b = branch
+  br = branch
   changed = diff --name-status -r
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   au = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
