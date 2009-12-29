@@ -75,7 +75,32 @@ export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate w
 #export EDITOR='vim'  #Command line
 
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-PS1="\[${COLOR_GREEN}\]\w\[${COLOR_NC}\] \[${COLOR_BLUE}\]\$(parse_git_branch)\[${COLOR_NC}\]$ "
+ 
+function proml {
+  local        BLUE="\[\033[0;34m\]"
+  local         RED="\[\033[0;31m\]"
+  local   LIGHT_RED="\[\033[1;31m\]"
+  local       GREEN="\[\033[0;32m\]"
+  local LIGHT_GREEN="\[\033[1;32m\]"
+  local       WHITE='\[\033[0;40m\]'
+  local      WHITEB="\[\033[1;37m\]"
+  local  LIGHT_GRAY="\[\033[0;37m\]"
+  case $TERM in
+    xterm*)
+    TITLEBAR='\[\033]0;\u@\h:\w\007\]'
+    ;;
+    *)
+    TITLEBAR=""
+    ;;
+  esac
+ 
+  PS1="$BLUE[$RED\$(date +%H:%M)$BLUE]\
+$BLUE[$GREEN\u@\h:\W$BLUE] $LIGHT_RED\$(parse_git_branch)\
+$GREEN:$WHITE "
+  PS2='> '
+  PS4='+ '
+}
+proml
