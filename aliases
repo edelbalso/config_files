@@ -13,7 +13,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 
 alias ls="ls -G"
-alias ll="ls -GAhl"
+alias ll="ls -Ghl"
 alias empties="find . -empty -type d -maxdepth 2"
 
 alias pg="ps ax | grep -v grep | grep -i "
