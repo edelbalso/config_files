@@ -1,5 +1,5 @@
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+if [[ ! -z "$PS1" ]] ; then
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -71,3 +71,7 @@ function cuke {
 # Load in .bashrc -------------------------------------------------
 source ~/.git-completion.bash
 source ~/.bashrc
+
+if [[ -s /Users/edu/.rvm/scripts/rvm ]] ; then source /Users/edu/.rvm/scripts/rvm ; fi
+
+fi
