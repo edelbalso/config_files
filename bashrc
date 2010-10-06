@@ -1,6 +1,5 @@
 # See following for more information: http://www.infinitered.com/blog/?p=19
 
-
 # Colors ----------------------------------------------------------
 export TERM=xterm-color
 
