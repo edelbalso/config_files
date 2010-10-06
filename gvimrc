@@ -1,18 +1,13 @@
-" Window size
-set winwidth=85
-let g:halfsize = 86
-let g:fullsize = 171
-set lines=50
-let &columns = g:halfsize
+" Example Vim graphical configuration.
+" Copy to ~/.gvimrc or ~/_gvimrc.
 
-" Font
-set guifont=Monaco:h15.00
+"set guifont=Monaco:h12            " Font family and font size.
+"set antialias                     " MacVim: smooth fonts.
+"set encoding=utf-8                " Use UTF-8 everywhere.
+"set guioptions-=T                 " Hide toolbar.
+"set background=light              " Background.
+"set lines=25 columns=100          " Window dimensions.
 
-" No audible bell
-set vb
-
-" No toolbar
-set guioptions-=T
-
-" Use console dialogs
-set guioptions+=c
+" Uncomment to use.
+"set guioptions-=r                 " Don't show right scrollbar
+"set guioptions-=L                 " Don't show the left scrollbar
