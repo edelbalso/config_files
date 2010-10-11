@@ -94,3 +94,6 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # rcli Installer addition on 2010-09-14 18:26:07 -0400. Adding appropriate PATH variables for use with rcli.
 export PATH=/Users/edu/.rcli/bin:$PATH
 # Finished adapting your PATH environment variable for use with rcli.
+#
+#
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
