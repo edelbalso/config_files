@@ -27,7 +27,7 @@ namespace :vim do
 #    :surround      => "git://github.com/tpope/vim-surround.git",
 #    :tabular       => "git://github.com/godlygeek/tabular",
 #    :taglist       => "http://www.vim.org/scripts/download_script.php?src_id=7701",
-    :lusty_explorer => "http://github.com/sjbach/lusty.git",
+    :lusty_explorer => "git://github.com/sjbach/lusty.git",
 
     # syntax definitions
     :syntax_markdown  => "git://github.com/ujihisa/vim-markdown.git",

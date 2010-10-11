@@ -21,6 +21,7 @@ let NERDCreateDefaultMappings=0 " disable default mappings
 let NERDMenuMode=0              " disable menu
 let NERDSpaceDelims=1           " place spaces after comment chars
 let NERDDefaultNesting=0        " don't recomment commented lines
+let NERDTreeChDirMode=2         " make CWD follow root of NERDTree
 
 map <leader>cc <plug>NERDCommenterToggle
 map <leader>cC <plug>NERDCommenterSexy

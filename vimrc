@@ -1,6 +1,8 @@
 " load up everything in ~/.vim/bundle using pathogen.vim
 call pathogen#runtime_append_all_bundles()
 
+"au VimEnter * cd %:h
+
 source $HOME/.vim/vimrc/basic
 source $HOME/.vim/vimrc/bindings
 source $HOME/.vim/vimrc/plugins

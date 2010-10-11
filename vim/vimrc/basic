@@ -29,7 +29,7 @@ set wildmode=list:longest         " Complete files like a shell.
 " type :help cpoptions for more.
 set cpoptions=ceFWZ
 
-syntax enable                     " Turn on syntax highlighting.
+syntax on                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
 set showcmd                       " Display incomplete commands.
@@ -77,4 +77,3 @@ colorscheme candycode
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
-
