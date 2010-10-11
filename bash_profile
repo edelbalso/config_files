@@ -96,4 +96,5 @@ export PATH=/Users/edu/.rcli/bin:$PATH
 # Finished adapting your PATH environment variable for use with rcli.
 #
 #
+#
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
