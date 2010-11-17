@@ -63,7 +63,29 @@ namespace :vim do
         rm_rf target_path + '.git'
       when 'http'
         mkdir_p target_path
-        sh "cd #{target_path} && curl -s '#{location}' | tar zx -"
+        sh "cd #{target_path} && curl -s '#{location}' > filedownload.tmp"
+        file_output = `file #{target_path}/filedownload.tmp`
+        if file_output.include? "Zip archive data"
+          puts "-- Identified file as :: ZIP ARCHIVE"
+          puts "*** deleting temporary download for #{bundle.to_s}"
+          sh "rm #{target_path}/filedownload.tmp"
+          puts "*** redownload #{bundle.to_s} to #{target_path}"
+          sh "cd #{target_path} && curl -s '#{location}' | tar zx -"
+        elsif ( file_output.include? ("ASCII") ) && ( file_output.include?( "text" ) )
+          puts "-- Identified file as :: VIM FILE"
+          mkdir_p "#{target_path}/plugin"
+          puts "*** putting downloaded ASCII file to #{target_path}/plugin/#{bundle.to_s}.vim"
+          sh "mv #{target_path}/filedownload.tmp #{target_path}/plugin/#{bundle.to_s}.vim"
+        elsif ( file_output.include? ("gzip compressed data") )
+          puts "-- Identified file as :: GZIP ARCHIVE"
+          puts "*** deleting temporary download for #{bundle.to_s}"
+          sh "rm #{target_path}/filedownload.tmp"
+          puts "*** redownload #{bundle.to_s} to #{target_path}"
+          sh "cd #{target_path} && curl -s '#{location}' | tar zx -"
+        else
+          puts "ERROR: Unrecognized file type:: #{file_output}"
+          exit
+        end
       end
 
       docdir = target_path + 'doc'
