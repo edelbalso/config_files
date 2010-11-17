@@ -1,12 +1,11 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""
-""" Eduardo Del Balso's Vim Setup
-""" Based on the work of Ben Bleything.
-""" Rakefile updated to support zip and tar files
-"""
-""" Copied from: http://github.com/bleything/dotvim
-"""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+########################################################################
+###
+### Eduardo Del Balso's Vim Setup
+### Based on the work of Ben Bleything.
+###
+### Modified from: http://github.com/bleything/dotvim
+##
+########################################################################
 
 require 'pathname'
 
