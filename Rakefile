@@ -1,12 +1,12 @@
-########################################################################
-###
-### Ben Bleything's Vim Setup
-### Based on the work of many others. See README.rdoc for credits.
-###
-### Git Hubs: http://github.com/bleything/dotvim
-### Internet Electronic Mail: ben@bleything.net
-##
-########################################################################
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+""" Eduardo Del Balso's Vim Setup
+""" Based on the work of Ben Bleything.
+""" Rakefile updated to support zip and tar files
+"""
+""" Copied from: http://github.com/bleything/dotvim
+"""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 require 'pathname'
 
