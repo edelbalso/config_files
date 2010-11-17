@@ -12,6 +12,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=','    " set leader to ,
 
+" Open shortcuts 
+map <leader>? :tabe ~/lib/vim/shortcuts.txt<CR>
+autocmd BufRead ~/lib/vim/shortcuts.txt map <buffer> <leader>? :bdelete shortcuts.txt<CR>
+autocmd BufRead ~/lib/vim/shortcuts.txt setfiletype txtfmt
+
 " Tab mappings.
 map <leader>tt :tabnew<cr>
 map <leader>te :tabedit
