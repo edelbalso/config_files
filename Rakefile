@@ -39,6 +39,7 @@ namespace :vim do
 
     # Color Schemes
 #    :color_sampler   => "http://www.vim.org/scripts/download_script.php?src_id=12179",
+    :blackboard => "git://github.com/nelstrom/vim-blackboard.git",
   }
 
   desc "update any bundles defined in the Rakefile"
