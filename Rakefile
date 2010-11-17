@@ -2,6 +2,7 @@
 ###
 ### Eduardo Del Balso's Vim Setup
 ### Based on the work of Ben Bleything.
+### Rakefile updated to support zip and gzip files
 ###
 ### Modified from: http://github.com/bleything/dotvim
 ##
@@ -12,7 +13,7 @@ require 'pathname'
 task :default do
   puts "Hi! All this Rakefile can do right now is update the bundles:"
   puts # blank line
-  puts "  $ rake update:bundles"
+  puts "  $ rake vim:update_bundles"
 end
 
 namespace :vim do
