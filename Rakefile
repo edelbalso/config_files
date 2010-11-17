@@ -31,22 +31,28 @@ namespace :vim do
     :lusty_explorer => "git://github.com/sjbach/lusty.git",
     :ragtag         => "git://github.com/tpope/vim-ragtag.git",
     :matchit        => "http://www.vim.org/scripts/download_script.php?src_id=8196",
+    :endwise        => "http://www.vim.org/scripts/download_script.php?src_id=9299",
     :git            => "git://github.com/tpope/vim-git.git",
     :fugitive       => "git://github.com/tpope/vim-fugitive.git",
     :jekyll         => "git://github.com/csexton/jekyll.vim.git",
+    :rvm            => "https://github.com/csexton/rvm.vim",
+
+
+#    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
 
     # syntax definitions
     :syntax_markdown  => "git://github.com/ujihisa/vim-markdown.git",
     :syntax_textile   => "git://github.com/timcharper/textile.vim.git",
 #    :syntax_cucumber  => "git://github.com/tpope/vim-cucumber.git",
-#    :syntax_git       => "git://github.com/tpope/vim-git.git",
-#    :syntax_rdoc      => "git://github.com/hallison/vim-rdoc.git",
+    :syntax_git       => "git://github.com/tpope/vim-git.git",
+    :syntax_rdoc      => "git://github.com/hallison/vim-rdoc.git",
 #    :syntax_slidedown => "git://github.com/bleything/vim-slidedown.git",
 #    :syntax_twiki     => "http://www.vim.org/scripts/download_script.php?src_id=6460",
 
     # Color Schemes
 #    :color_sampler   => "http://www.vim.org/scripts/download_script.php?src_id=12179",
     :blackboard => "git://github.com/nelstrom/vim-blackboard.git",
+    #:dawn => "http://www.vim.org/scripts/download_script.php?src_id=4807",
   }
 
   desc "update any bundles defined in the Rakefile"
