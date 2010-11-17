@@ -33,6 +33,7 @@ namespace :vim do
     :matchit        => "http://www.vim.org/scripts/download_script.php?src_id=8196",
     :git            => "git://github.com/tpope/vim-git.git",
     :fugitive       => "git://github.com/tpope/vim-fugitive.git",
+    :jekyll         => "git://github.com/csexton/jekyll.vim.git",
 
     # syntax definitions
     :syntax_markdown  => "git://github.com/ujihisa/vim-markdown.git",
