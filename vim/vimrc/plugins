@@ -11,9 +11,11 @@
 """ P L U G I N   O P T I O N S
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""" lustyexplorer
+let g:LustyJugglerSuppressRubyWarning = 1
 """ bufexplorer
 "let g:bufExplorerDetailedHelp=1     " show full help text by default
-" let g:bufExplorerShowRelativePath=1 " use relative paths
+let g:bufExplorerShowRelativePath=1 " use relative paths
 "let g:bufExplorerShowUnlisted=1     " display unlisted buffers
 
 """ NERDCommenter
