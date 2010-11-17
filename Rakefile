@@ -27,6 +27,8 @@ namespace :vim do
     :tabular       => "git://github.com/godlygeek/tabular",
     :taglist       => "http://www.vim.org/scripts/download_script.php?src_id=7701",
     :lusty_explorer => "git://github.com/sjbach/lusty.git",
+    :git            => "git://github.com/tpope/vim-git.git",
+    :fugitive       => "git://github.com/tpope/vim-fugitive.git",
 
     # syntax definitions
     :syntax_markdown  => "git://github.com/ujihisa/vim-markdown.git",
