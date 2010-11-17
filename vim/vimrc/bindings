@@ -24,7 +24,7 @@ map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 
 " NERDTree Mappings
-map <leader>,, :NERDTreeToggle<cr>
+map <leader>f :NERDTreeToggle<cr>
 
 " one-stroke window maximizing
 "map <C-H> <C-W>h<C-W><BAR>
