@@ -36,7 +36,11 @@ alias colorslist="set | egrep 'COLOR_\w*'"  # Lists all the colors, uses vars in
 
 
 # Misc -------------------------------------------------------------
+# don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
+# ... and ignore same successive entries.
+export HISTCONTROL=ignoreboth
+
 shopt -s checkwinsize # After each command, checks the windows size and changes lines and columns
 
 # bash completion settings (actually, these are readline settings)
@@ -69,9 +73,9 @@ alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' 
 
 
 # Editors ----------------------------------------------------------
-export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate window to close
+#export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate window to close
 #export EDITOR='gedit'  #Linux/gnome
-#export EDITOR='vim'  #Command line
+export EDITOR='mvim'  #Command line
 
 
 function parse_git_branch {
@@ -103,3 +107,7 @@ $GREEN:$WHITE "
   PS4='+ '
 }
 proml
+
+export PATH=/usr/local/bin:$PATH;
+
+ [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.

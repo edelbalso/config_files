@@ -17,25 +17,31 @@ map <leader>? :tabe ~/lib/vim/shortcuts.txt<CR>
 autocmd BufRead ~/lib/vim/shortcuts.txt map <buffer> <leader>? :bdelete shortcuts.txt<CR>
 autocmd BufRead ~/lib/vim/shortcuts.txt setfiletype txtfmt
 
+" Taglist
+map <leader>, :TlistToggle
+
+" Gundo
+map <leader>gu :GundoToggle<CR>
+
 " Tab mappings.
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
+" map <leader>tt :tabnew<cr>
+" map <leader>te :tabedit
+" map <leader>tc :tabclose<cr>
+" map <leader>to :tabonly<cr>
+" map <leader>tn :tabnext<cr>
+" map <leader>tp :tabprevious<cr>
+" map <leader>tf :tabfirst<cr>
+" map <leader>tl :tablast<cr>
+" map <leader>tm :tabmove
 
 " NERDTree Mappings
 map <leader>f :NERDTreeToggle<cr>
 
 " one-stroke window maximizing
-"map <C-H> <C-W>h<C-W><BAR>
-"map <C-L> <C-W>l<C-W><BAR>
-"map <C-J> <C-W>j<C-W>_
-"map <C-K> <C-W>k<C-W>_
+map <C-H> <C-W>h<C-W><BAR>
+map <C-L> <C-W>l<C-W><BAR>
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
 
 " quick buffer switching
 map <leader>[ :bprevious<CR>
@@ -46,4 +52,18 @@ map <leader>] :bnext<CR>
 
 " shortcut to strip trailing whitespace
 "map <leader>s :s/\s\+$//g<CR>
+
+
+" Remap the tab key to do autocompletion or indentation depending on the
+" context (from http://www.vim.org/tips/tip.php?tip_id=102)
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-x><c-l>
 

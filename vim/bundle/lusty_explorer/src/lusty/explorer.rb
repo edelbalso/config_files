@@ -60,6 +60,26 @@ class Explorer
           @selected_index = \
             (@selected_index - 1) % @current_sorted_matches.size
           refresh_mode = :no_recompute
+        when 6                # C-f (select right)
+          columns = (@current_sorted_matches.size.to_f / @row_count.to_f).ceil
+          cur_column = @selected_index / @row_count
+          cur_row = @selected_index % @row_count
+          new_column = (cur_column + 1) % columns
+          if (new_column + 1) * (cur_row + 1) > @current_sorted_matches.size
+            new_column = 0
+          end
+          @selected_index = new_column * @row_count + cur_row
+          refresh_mode = :no_recompute
+        when 2                # C-b (select left)
+          columns = (@current_sorted_matches.size.to_f / @row_count.to_f).ceil
+          cur_column = @selected_index / @row_count
+          cur_row = @selected_index % @row_count
+          new_column = (cur_column - 1) % columns
+          if (new_column + 1) * (cur_row + 1) > @current_sorted_matches.size
+            new_column = columns - 2
+          end
+          @selected_index = new_column * @row_count + cur_row
+          refresh_mode = :no_recompute
         when 15               # C-o choose in new horizontal split
           choose(:new_split)
         when 20               # C-t choose in new tab
@@ -102,8 +122,8 @@ class Explorer
 
       on_refresh()
       highlight_selected_index() if VIM::has_syntax?
-      @display.print @current_sorted_matches.map { |x| x.label }
-      @prompt.print
+      @row_count = @display.print @current_sorted_matches.map { |x| x.label }
+      @prompt.print Display.max_width
     end
 
     def create_explorer_window

@@ -15,10 +15,10 @@
 "               Rajendra Badapanda, cho45, Simo Salminen, Sami Samhuri,
 "               Matt Tolton, Björn Winckler, sowill, David Brown
 "               Brett DiFrischia, Ali Asad Lotia, Kenneth Love, Ben Boeckel,
-"               robquant
+"               robquant, lilydjwg, Martin Wache, Johannes Holzfuß
 "
-" Release Date: July 21, 2010
-"      Version: 3.1.1
+" Release Date: December 16, 2010
+"      Version: 4.0
 "
 "        Usage:
 "                 <Leader>lf  - Opens the filesystem explorer.
@@ -59,6 +59,8 @@
 "
 "                 <C-n>    select [n]ext match
 "                 <C-p>    select [p]revious match
+"                 <C-f>    select [f]orward one column
+"                 <C-b>    select [b]ack one column
 "
 "                 <C-u>    clear prompt
 "

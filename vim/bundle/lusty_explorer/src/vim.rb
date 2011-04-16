@@ -82,6 +82,10 @@ module VIM
       VIM::nonzero? VIM::evaluate("getbufvar(#{number()}, '&modified')")
     end
 
+    def listed?
+      VIM::nonzero? VIM::evaluate("getbufvar(#{number()}, '&buflisted')")
+    end
+
     def self.obj_for_bufnr(n)
       # There's gotta be a better way to do this...
       (0..VIM::Buffer.count-1).each do |i|
@@ -107,6 +111,22 @@ module VIM
     end
 
     command 'echohl None'
+  end
+end
+
+# Hack for wide CJK characters.
+if VIM::exists?("*strwidth")
+  module VIM
+    def self.strwidth(s)
+      # strwidth() is defined in Vim 7.3.
+      evaluate("strwidth('#{single_quote_escape(s)}')").to_i
+    end
+  end
+else
+  module VIM
+    def self.strwidth(s)
+      s.length
+    end
   end
 end
 

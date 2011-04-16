@@ -37,6 +37,8 @@ namespace :vim do
     :jekyll         => "git://github.com/csexton/jekyll.vim.git",
     :rvm            => "https://github.com/csexton/rvm.vim",
 
+    :gundo          => "git://github.com/sjl/gundo.vim.git",
+    :indent_javascript => "git://github.com/pangloss/vim-javascript.git ",
 
 #    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
 

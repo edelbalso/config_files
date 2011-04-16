@@ -11,6 +11,7 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 [diff]
   renames = true
+	tool = Kaleidoscope
 [branch]
   autosetupmerge = true
 [color]
@@ -20,7 +21,7 @@
   interactive = auto
 [core]
 	excludesfile = ~/.gitignore
-	editor = mate -w
+	editor = vi
 [alias]
   c = commit -m
   a = add
@@ -43,3 +44,7 @@
   lg = log --graph --abbrev-commit --date=relative --pretty=format:'%h -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
   track = !sh -c 'git branch --track "$0" "origin/$0" && git checkout "$0"'
   whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false

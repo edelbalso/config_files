@@ -11,11 +11,12 @@
 """ G U I   O P T I O N S
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set mouse=a                 " use mouse when possible
-"set guifont=Inconsolata:12 " Inconsolata, 16pt high
+" set guifont=Inconsolata:h13 " Inconsolata, 16pt high
 set guifont=Andale\ Mono:h12
+set guifont=Anonymous\ Pro:h13
 
 " set default window size
-set columns=100
+set columns=200
 set lines=48
 
 " GUI option string.  Values:
@@ -28,5 +29,8 @@ set guioptions=aAce
 set fuopt+=maxhorz " allow fullscreen window to expand horizontally to 
                    " size of screen.
 
-set noanti
-colorscheme blackboard_ed
+"set noanti
+"colorscheme ir_black
+"colorscheme candycode
+" colorscheme blackboard_ed
+colorscheme proton

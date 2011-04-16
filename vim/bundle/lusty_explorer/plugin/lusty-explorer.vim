@@ -15,10 +15,10 @@
 "               Rajendra Badapanda, cho45, Simo Salminen, Sami Samhuri,
 "               Matt Tolton, Björn Winckler, sowill, David Brown
 "               Brett DiFrischia, Ali Asad Lotia, Kenneth Love, Ben Boeckel,
-"               robquant
+"               robquant, lilydjwg, Martin Wache, Johannes Holzfuß
 "
-" Release Date: July 21, 2010
-"      Version: 3.1.1
+" Release Date: December 16, 2010
+"      Version: 4.0
 "
 "        Usage:
 "                 <Leader>lf  - Opens the filesystem explorer.
@@ -59,6 +59,8 @@
 "
 "                 <C-n>    select [n]ext match
 "                 <C-p>    select [p]revious match
+"                 <C-f>    select [f]orward one column
+"                 <C-b>    select [b]ack one column
 "
 "                 <C-u>    clear prompt
 "
@@ -410,6 +412,10 @@ module VIM
       VIM::nonzero? VIM::evaluate("getbufvar(#{number()}, '&modified')")
     end
 
+    def listed?
+      VIM::nonzero? VIM::evaluate("getbufvar(#{number()}, '&buflisted')")
+    end
+
     def self.obj_for_bufnr(n)
       # There's gotta be a better way to do this...
       (0..VIM::Buffer.count-1).each do |i|
@@ -435,6 +441,22 @@ module VIM
     end
 
     command 'echohl None'
+  end
+end
+
+# Hack for wide CJK characters.
+if VIM::exists?("*strwidth")
+  module VIM
+    def self.strwidth(s)
+      # strwidth() is defined in Vim 7.3.
+      evaluate("strwidth('#{single_quote_escape(s)}')").to_i
+    end
+  end
+else
+  module VIM
+    def self.strwidth(s)
+      s.length
+    end
   end
 end
 
@@ -659,12 +681,13 @@ class Entry
     @label = label
   end
 
+  # NOTE: very similar to BufferStack::shorten_paths()
   def self.compute_buffer_entries()
     buffer_entries = []
 
     $le_buffer_stack.numbers.each do |n|
       o = VIM::Buffer.obj_for_bufnr(n)
-      next if o.nil?
+      next if (o.nil? or not o.listed?)
       buffer_entries << self.new(o, n)
     end
 
@@ -804,6 +827,26 @@ class Explorer
           @selected_index = \
             (@selected_index - 1) % @current_sorted_matches.size
           refresh_mode = :no_recompute
+        when 6                # C-f (select right)
+          columns = (@current_sorted_matches.size.to_f / @row_count.to_f).ceil
+          cur_column = @selected_index / @row_count
+          cur_row = @selected_index % @row_count
+          new_column = (cur_column + 1) % columns
+          if (new_column + 1) * (cur_row + 1) > @current_sorted_matches.size
+            new_column = 0
+          end
+          @selected_index = new_column * @row_count + cur_row
+          refresh_mode = :no_recompute
+        when 2                # C-b (select left)
+          columns = (@current_sorted_matches.size.to_f / @row_count.to_f).ceil
+          cur_column = @selected_index / @row_count
+          cur_row = @selected_index % @row_count
+          new_column = (cur_column - 1) % columns
+          if (new_column + 1) * (cur_row + 1) > @current_sorted_matches.size
+            new_column = columns - 2
+          end
+          @selected_index = new_column * @row_count + cur_row
+          refresh_mode = :no_recompute
         when 15               # C-o choose in new horizontal split
           choose(:new_split)
         when 20               # C-t choose in new tab
@@ -846,8 +889,8 @@ class Explorer
 
       on_refresh()
       highlight_selected_index() if VIM::has_syntax?
-      @display.print @current_sorted_matches.map { |x| x.label }
-      @prompt.print
+      @row_count = @display.print @current_sorted_matches.map { |x| x.label }
+      @prompt.print Display.max_width
     end
 
     def create_explorer_window
@@ -1469,9 +1512,16 @@ class Prompt
       @input = ""
     end
 
-    def print
+    def print(max_width = 0)
+      text = @input
+      # may need some extra characters for "..." and spacing
+      max_width -= 5
+      if max_width > 0 && text.length > max_width
+        text = "..." + text[(text.length - max_width + 3 ) .. -1]
+      end
+
       VIM::pretty_msg("Comment", @@PROMPT,
-                      "None", VIM::single_quote_escape(@input),
+                      "None", VIM::single_quote_escape(text),
                       "Underlined", " ")
     end
 
@@ -1820,6 +1870,8 @@ class Display
       VIM::command "#{map} <C-w>    :call <SID>#{prefix}KeyPressed(23)<CR>"
       VIM::command "#{map} <C-n>    :call <SID>#{prefix}KeyPressed(14)<CR>"
       VIM::command "#{map} <C-p>    :call <SID>#{prefix}KeyPressed(16)<CR>"
+      VIM::command "#{map} <C-f>    :call <SID>#{prefix}KeyPressed(6)<CR>"
+      VIM::command "#{map} <C-b>    :call <SID>#{prefix}KeyPressed(2)<CR>"
       VIM::command "#{map} <C-o>    :call <SID>#{prefix}KeyPressed(15)<CR>"
       VIM::command "#{map} <C-t>    :call <SID>#{prefix}KeyPressed(20)<CR>"
       VIM::command "#{map} <C-v>    :call <SID>#{prefix}KeyPressed(22)<CR>"
@@ -1851,7 +1903,7 @@ class Display
 
           if col_index < col_count - 1
             # Add spacer to the width of the column
-            rows[i] << (" " * (column_width - string.length))
+            rows[i] << (" " * (column_width - VIM::strwidth(string)))
             rows[i] << @@COLUMN_SEPARATOR
           end
         end
@@ -1861,6 +1913,7 @@ class Display
       end
 
       print_rows(rows, truncated)
+      row_count
     end
 
     def close
@@ -1928,7 +1981,8 @@ class Display
       column_widths = []
       total_width = 0
       strings.each_slice(optimal_row_count) do |column|
-        column_width = column.max { |a, b| a.length <=> b.length }.length
+        longest = column.max { |a, b| VIM::strwidth(a) <=> VIM::strwidth(b) }
+        column_width = VIM::strwidth(longest)
         total_width += column_width
 
         break if total_width > max_width
@@ -2241,8 +2295,11 @@ class BufferStack
 
   private
     def cull!
-      # Remove empty buffers.
-      @stack.delete_if { |x| not VIM::evaluate_bool("bufexists(#{x})") }
+      # Remove empty and unlisted buffers.
+      @stack.delete_if { |x|
+        not (VIM::evaluate_bool("bufexists(#{x})") and
+             VIM::evaluate_bool("getbufvar(#{x}, '&buflisted')"))
+      }
     end
 
     # NOTE: very similar to Entry::compute_buffer_entries()

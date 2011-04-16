@@ -31,12 +31,24 @@ if !exists('g:jekyll_post_created')
   let g:jekyll_post_created = ""
 endif
 
+if !exists('g:jekyll_title_pattern')
+  let g:jekyll_title_pattern = "[ '\"]"
+endif
+
+if !exists('g:jekyll_prompt_tags')
+  let g:jekyll_prompt_tags = ""
+endif
+
+if !exists('g:jekyll_prompt_categories')
+  let g:jekyll_prompt_categories = ""
+endif
+
 function s:esctitle(str)
   let str = a:str
   let str = tolower(str)
-  let str = substitute(str, ' ', '-', 'g')
-  let str = substitute(str, '"', '-', 'g')
-  let str = substitute(str, "'", '-', 'g')
+  let str = substitute(str, g:jekyll_title_pattern, '-', 'g')
+  let str = substitute(str, '\(--\)\+', '-', 'g')
+  let str = substitute(str, '\(^-\|-$\)', '', 'g')
   return str
 endfunction
 
@@ -97,6 +109,9 @@ command! -nargs=0 JekyllList :call JekyllList()
 function JekyllPost(title)
   let published = g:jekyll_post_published
   let created = g:jekyll_post_created
+  let tags = g:jekyll_prompt_tags
+  let categories = g:jekyll_prompt_categories
+
   if created == "epoch"
     let created = localtime() 
   elseif created != ""
@@ -106,6 +121,12 @@ function JekyllPost(title)
   if title == ''
     let title = input("Post title: ")
   endif
+  if tags != ""
+    let tags = input("Post tags: ")
+  endif
+  if categories != ""
+    let categories = input("Post categories: ")
+  endif
   if title != ''
     let file_name = strftime("%Y-%m-%d-") . s:esctitle(title) . "." . g:jekyll_post_suffix
     echo "Making that post " . file_name
@@ -114,6 +135,12 @@ function JekyllPost(title)
     let template = ["---", "layout: post", "title: \"" . title . "\"", "published: " . published]
     if created != ""
       call add(template, "created:  "  . created)
+    endif
+    if tags != ""
+      call add(template, "tags: [" . tags . "]")
+    endif
+    if categories != ""
+      call add(template, "categories: [" . categories . "]")
     endif
     call extend(template,["---", ""])
 

@@ -10,10 +10,11 @@
 " Name Of File: lusty-juggler.vim
 "  Description: Dynamic Buffer Switcher Vim Plugin
 "   Maintainer: Stephen Bach <this-file@sjbach.com>
-" Contributors: Juan Frias, Bartosz Leper, Marco Barberis
+" Contributors: Juan Frias, Bartosz Leper, Marco Barberis, Vincent Driessen,
+"               Martin Wache, Johannes Holzfuß
 "
-" Release Date: June 2, 2010
-"      Version: 1.1.4
+" Release Date: December 16, 2010
+"      Version: 1.2
 "
 "        Usage:
 "                 <Leader>lj  - Opens the buffer juggler.
@@ -52,6 +53,22 @@
 "               To cancel the juggler, press any of "q", "<ESC>", "<C-c",
 "               "<BS>", "<Del>", or "<C-h>".
 "
+"               LustyJuggler can act very much like <A-Tab> window switching.
+"               To enable this mode, add the following line to your .vimrc:
+"
+"                 let g:LustyJugglerAltTabMode = 1
+"
+"               Then, given the following mapping:
+"
+"                 noremap <silent> <A-s> :LustyJuggler<CR>
+"
+"               Pressing "<A-s>" will launch the LustyJuggler with the
+"               previous buffer highlighted. Typing "<A-s>" again will cycle
+"               to the next buffer (in most-recently used order), and
+"               "<ENTER>" will open the highlighted buffer.  For example, the
+"               sequence "<A-s><Enter>" will open the previous buffer, and
+"               "<A-s><A-s><Enter>" will open the buffer used just before the
+"               previous buffer, and so on.
 "
 "        Bonus: This plugin also includes the following command, which will
 "               immediately switch to your previously used buffer:
