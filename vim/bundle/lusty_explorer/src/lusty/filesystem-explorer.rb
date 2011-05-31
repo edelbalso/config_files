@@ -25,21 +25,12 @@ class FilesystemExplorer < Explorer
       super
     end
 
-    def run_from_here
+    def run_from_path(path)
       return if @running
-      start_path = if $curbuf.name.nil?
-                     VIM::getcwd()
-                   else
-                     VIM::evaluate("expand('%:p:h')")
-                   end
-
-      @prompt.set!(start_path + File::SEPARATOR)
-      run()
-    end
-
-    def run_from_wd
-      return if @running
-      @prompt.set!(VIM::getcwd() + File::SEPARATOR)
+      if path.empty?
+        path = VIM::getcwd()
+      end
+      @prompt.set!(path + File::SEPARATOR)
       run()
     end
 

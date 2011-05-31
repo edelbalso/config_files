@@ -17,6 +17,8 @@ map <leader>? :tabe ~/lib/vim/shortcuts.txt<CR>
 autocmd BufRead ~/lib/vim/shortcuts.txt map <buffer> <leader>? :bdelete shortcuts.txt<CR>
 autocmd BufRead ~/lib/vim/shortcuts.txt setfiletype txtfmt
 
+" Rails
+map <leader>rc :Rcontroller 
 " Taglist
 map <leader>, :TlistToggle
 

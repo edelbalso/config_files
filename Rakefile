@@ -21,13 +21,14 @@ namespace :vim do
   BUNDLES = {
     # plugins
     :txtfmt         => "http://www.vim.org/scripts/download_script.php?src_id=13856",
-    :bufexplorer   => "http://www.vim.org/scripts/download_script.php?src_id=12363",
-    :nerdcommenter => "git://github.com/scrooloose/nerdcommenter.git",
-    :nerdtree      => "git://github.com/scrooloose/nerdtree.git",
-    :rails         => "git://github.com/tpope/vim-rails.git",
-    :surround      => "git://github.com/tpope/vim-surround.git",
-    :tabular       => "git://github.com/godlygeek/tabular",
-    :taglist       => "http://www.vim.org/scripts/download_script.php?src_id=7701",
+    :bufexplorer    => "http://www.vim.org/scripts/download_script.php?src_id=12363",
+    :nerdcommenter  => "git://github.com/scrooloose/nerdcommenter.git",
+    :nerdtree       => "git://github.com/scrooloose/nerdtree.git",
+    :rails          => "git://github.com/tpope/vim-rails.git",
+    :cucumber       => "git://github.com/tpope/vim-cucumber.git",
+    :surround       => "git://github.com/tpope/vim-surround.git",
+    :tabular        => "git://github.com/godlygeek/tabular",
+    :taglist        => "http://www.vim.org/scripts/download_script.php?src_id=7701",
     :lusty_explorer => "git://github.com/sjbach/lusty.git",
     :ragtag         => "git://github.com/tpope/vim-ragtag.git",
     :matchit        => "http://www.vim.org/scripts/download_script.php?src_id=8196",
@@ -39,6 +40,8 @@ namespace :vim do
 
     :gundo          => "git://github.com/sjl/gundo.vim.git",
     :indent_javascript => "git://github.com/pangloss/vim-javascript.git ",
+
+    :vimtasks       => "git://github.com/samsonw/vim-task.git",
 
 #    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
 

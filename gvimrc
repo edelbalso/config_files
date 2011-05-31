@@ -11,3 +11,11 @@
 " Uncomment to use.
 "set guioptions-=r                 " Don't show right scrollbar
 "set guioptions-=L                 " Don't show the left scrollbar
+
+" set CMD-T to peepopen
+if has("gui_macvim")
+macmenu &File.New\ Tab key=<nop>
+map <D-t> <Plug>PeepOpen
+end
+
+

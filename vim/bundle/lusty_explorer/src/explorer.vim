@@ -1,4 +1,4 @@
-"    Copyright: Copyright (C) 2007-2010 Stephen Bach
+"    Copyright: Copyright (C) 2007-2011 Stephen Bach
 "               Permission is hereby granted to use and distribute this code,
 "               with or without modifications, provided that this copyright
 "               notice is copied with it. Like anything else that's free,
@@ -16,9 +16,10 @@
 "               Matt Tolton, Björn Winckler, sowill, David Brown
 "               Brett DiFrischia, Ali Asad Lotia, Kenneth Love, Ben Boeckel,
 "               robquant, lilydjwg, Martin Wache, Johannes Holzfuß
+"               Donald Curtis, Jan Zwiener
 "
-" Release Date: December 16, 2010
-"      Version: 4.0
+" Release Date: April 29, 2011
+"      Version: 4.1
 "
 "        Usage:
 "                 <Leader>lf  - Opens the filesystem explorer.
@@ -30,7 +31,7 @@
 "
 "               You can also use the commands:
 "
-"                 ":LustyFilesystemExplorer"
+"                 ":LustyFilesystemExplorer [optional-path]"
 "                 ":LustyFilesystemExplorerFromHere"
 "                 ":LustyBufferExplorer"
 "                 ":LustyBufferGrep"
@@ -244,8 +245,8 @@ let g:loaded_lustyexplorer = "yep"
 
 " Commands.
 command LustyBufferExplorer :call <SID>LustyBufferExplorerStart()
-command LustyFilesystemExplorer :call <SID>LustyFilesystemExplorerStart()
-command LustyFilesystemExplorerFromHere :call <SID>LustyFilesystemExplorerFromHereStart()
+command -nargs=? LustyFilesystemExplorer :call <SID>LustyFilesystemExplorerStart("<args>")
+command LustyFilesystemExplorerFromHere :call <SID>LustyFilesystemExplorerStart(expand("%:p:h"))
 command LustyBufferGrep :call <SID>LustyBufferGrepStart()
 
 " Deprecated command names.
@@ -271,12 +272,8 @@ nmap <silent> <Leader>lb :LustyBufferExplorer<CR>
 nmap <silent> <Leader>lg :LustyBufferGrep<CR>
 
 " Vim-to-ruby function calls.
-function! s:LustyFilesystemExplorerStart()
-  ruby LustyE::profile() { $lusty_filesystem_explorer.run_from_wd }
-endfunction
-
-function! s:LustyFilesystemExplorerFromHereStart()
-  ruby LustyE::profile() { $lusty_filesystem_explorer.run_from_here }
+function! s:LustyFilesystemExplorerStart(path)
+  exec "ruby LustyE::profile() { $lusty_filesystem_explorer.run_from_path('".a:path."') }"
 endfunction
 
 function! s:LustyBufferExplorerStart()

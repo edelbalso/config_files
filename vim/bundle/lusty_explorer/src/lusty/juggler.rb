@@ -75,6 +75,7 @@ class LustyJuggler
       map_key("<Tab>", ":call <SID>LustyJugglerKeyPressed('TAB')<CR>")
 
       # Cancel keys.
+      map_key("i", ":call <SID>LustyJugglerCancel()<CR>")
       map_key("q", ":call <SID>LustyJugglerCancel()<CR>")
       map_key("<Esc>", ":call <SID>LustyJugglerCancel()<CR>")
       map_key("<C-c>", ":call <SID>LustyJugglerCancel()<CR>")
@@ -115,6 +116,7 @@ class LustyJuggler
       unmap_key("<CR>")
       unmap_key("<Tab>")
 
+      unmap_key("i")
       unmap_key("q")
       unmap_key("<Esc>")
       unmap_key("<C-c>")
@@ -157,7 +159,18 @@ class LustyJuggler
       ['n','v','o','i','c','l'].each do |mode|
         VIM::command "let s:maparg_holder = maparg('#{key}', '#{mode}')"
         if VIM::evaluate_bool("s:maparg_holder != ''")
-          @key_mappings_map[key] << [mode, VIM::evaluate('s:maparg_holder')]
+          orig_rhs = VIM::evaluate("s:maparg_holder")
+          if VIM::has_ext_maparg?
+            VIM::command "let s:maparg_dict_holder = maparg('#{key}', '#{mode}', 0, 1)"
+            nore    = VIM::evaluate_bool("s:maparg_dict_holder['noremap']") ? 'nore'      : ''
+            silent  = VIM::evaluate_bool("s:maparg_dict_holder['silent']")  ? ' <silent>' : ''
+            expr    = VIM::evaluate_bool("s:maparg_dict_holder['expr']")    ? ' <expr>'   : ''
+            buffer  = VIM::evaluate_bool("s:maparg_dict_holder['buffer']")  ? ' <buffer>' : ''
+            restore_cmd = "#{mode}#{nore}map#{silent}#{expr}#{buffer} #{key} #{orig_rhs}"
+          else
+            restore_cmd = "#{mode}noremap <silent> #{key} #{orig_rhs}"
+          end
+          @key_mappings_map[key] << [ mode, restore_cmd ]
         end
         VIM::command "#{mode}noremap <silent> #{key} #{action}"
       end
@@ -174,9 +187,8 @@ class LustyJuggler
 
       if @key_mappings_map.has_key?(key)
         @key_mappings_map[key].each do |a|
-          mode = a[0]
-          action = a[1]
-          VIM::command "#{mode}noremap <silent> #{key} #{action}"
+          mode, restore_cmd = *a
+          VIM::command restore_cmd
           modes_with_mappings_for_key[mode] = true
         end
       end

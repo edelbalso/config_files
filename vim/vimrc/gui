@@ -12,7 +12,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set mouse=a                 " use mouse when possible
 " set guifont=Inconsolata:h13 " Inconsolata, 16pt high
-set guifont=Andale\ Mono:h12
+" set guifont=Andale\ Mono:h12
 set guifont=Anonymous\ Pro:h13
 
 " set default window size
@@ -29,8 +29,11 @@ set guioptions=aAce
 set fuopt+=maxhorz " allow fullscreen window to expand horizontally to 
                    " size of screen.
 
+
 "set noanti
 "colorscheme ir_black
 "colorscheme candycode
 " colorscheme blackboard_ed
-colorscheme proton
+" colorscheme proton
+colorscheme molokai
+
