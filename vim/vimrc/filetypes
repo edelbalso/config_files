@@ -14,7 +14,10 @@
 filetype plugin indent on
 
 " ruby and yaml files are indented by two
-autocmd FileType ruby,rdoc,cucumber,yaml set softtabstop=2 shiftwidth=2
+autocmd FileType css,scss,javascript,ruby,rdoc,cucumber,yaml set softtabstop=2 shiftwidth=2
+
+" treat scss files appropriately
+autocmd BufNewFile,BufRead *.scss setfiletype css
 
 " Gemfile, Isolate, Vagrantfile and config.ru are ruby
 autocmd BufNewFile,BufRead Gemfile     setfiletype ruby

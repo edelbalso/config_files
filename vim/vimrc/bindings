@@ -12,38 +12,47 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=','    " set leader to ,
 
+" Command-Return for fullscreen
+macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
+
 " Open shortcuts 
-map <leader>? :tabe ~/lib/vim/shortcuts.txt<CR>
-autocmd BufRead ~/lib/vim/shortcuts.txt map <buffer> <leader>? :bdelete shortcuts.txt<CR>
-autocmd BufRead ~/lib/vim/shortcuts.txt setfiletype txtfmt
+" map <leader>? :tabe ~/lib/vim/shortcuts.txt<CR>
+" autocmd BufRead ~/lib/vim/shortcuts.txt map <buffer> <leader>? :bdelete shortcuts.txt<CR>
+" autocmd BufRead ~/lib/vim/shortcuts.txt setfiletype txtfmt
 
 " Rails
-map <leader>rc :Rcontroller 
+map <leader>rc :Rcontroller
+map <leader>rm :Rmodel
+
 " Taglist
-map <leader>, :TlistToggle
+" map <leader>, :TlistToggle
 
 " Gundo
 map <leader>gu :GundoToggle<CR>
 
 " Tab mappings.
-" map <leader>tt :tabnew<cr>
-" map <leader>te :tabedit
-" map <leader>tc :tabclose<cr>
-" map <leader>to :tabonly<cr>
-" map <leader>tn :tabnext<cr>
-" map <leader>tp :tabprevious<cr>
-" map <leader>tf :tabfirst<cr>
-" map <leader>tl :tablast<cr>
-" map <leader>tm :tabmove
+map <leader>tt :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
 
 " NERDTree Mappings
 map <leader>f :NERDTreeToggle<cr>
 
+" NERDCommenter Mappings
+map <D-/> <plug>NERDCommenterToggle<CR>
+imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
+
 " one-stroke window maximizing
-map <C-H> <C-W>h<C-W><BAR>
-map <C-L> <C-W>l<C-W><BAR>
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
+" map <C-H> <C-W>h<C-W><BAR>
+" map <C-L> <C-W>l<C-W><BAR>
+" map <C-J> <C-W>j<C-W>_
+" map <C-K> <C-W>k<C-W>_
 
 " quick buffer switching
 map <leader>[ :bprevious<CR>
@@ -55,6 +64,16 @@ map <leader>] :bnext<CR>
 " shortcut to strip trailing whitespace
 "map <leader>s :s/\s\+$//g<CR>
 
+" Unimpaired configuration
+" Bubble single lines
+nmap <D-Up> [e
+nmap <D-Down> ]e
+" Bubble multiple lines
+vmap <D-Up> [egv
+vmap <D-Down> ]egv
+
+" Command-Shift-F for Ack
+map <D-F> :Ack<space>
 
 " Remap the tab key to do autocompletion or indentation depending on the
 " context (from http://www.vim.org/tips/tip.php?tip_id=102)
